@@ -39,15 +39,27 @@ function renderMemes(images) {
         let memeCard = document.createElement('div')
         memeCard.className = 'memeItem'
         memeCard.innerHTML = `
-        <h2>${images.data.memes[i].name}</h2>
-        <img class="memeImage" src=${images.data.memes[i].url} />
-        <div class="vote-group">
-        <button>Up Vote</button>
-        <p>${memeObj.votes} votes</p>
-        <button>Down Vote</button>
-        </div>
+            <h2>${images.data.memes[i].name}</h2>
+            <img class="memeImage" src=${images.data.memes[i].url} />
+            <div class="vote-group">
+            <button id="up-${images.data.memes[i].id}" class="up-btn">Up Vote</button>
+            <p><span class="vote-count">${memeObj.votes}</span> votes</p>
+            <button id="down-${images.data.memes[i].id}" class="down-btn">Down Vote</button>
+            </div>
         `
+
         document.querySelector('#memes').appendChild(memeCard)
+        memeCard.querySelector('.up-btn').addEventListener('click', () => {
+            memeObj.votes++
+            memeCard.querySelector('span').textContent = memeObj.votes
+        })
+
+        memeCard.querySelector('.down-btn').addEventListener('click', () => {
+            memeObj.votes--
+            memeCard.querySelector('span').textContent = memeObj.votes
+        })
+
+
         postMeme(memeObj)
         }
     }
