@@ -1,3 +1,11 @@
 body {
     background-color: antiquewhite;
 }
+
+.memeImage {
+    max-width: 400px;
+}
+
+.memeItem {
+    margin-bottom: 25px;
+}
