@@ -8,4 +8,14 @@ body {
 
 .memeItem {
     margin-bottom: 25px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.vote-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
