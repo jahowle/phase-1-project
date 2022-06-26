@@ -19,3 +19,20 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+#headline {
+    display: flex;
+    justify-content: center;
+}
+
+#meme-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 50%;
+    align-items: center;
+}
+
+.meme-title {
+    text-align: center;
+}
