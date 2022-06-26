@@ -1,5 +1,5 @@
 
-//Check to see if the app has already been initiated before
+//Check to see if the ap has already been initiated before
 document.addEventListener("DOMContentLoaded", () => {
     getState()
     document.querySelector('#get-memes').addEventListener('click', getMemes)
