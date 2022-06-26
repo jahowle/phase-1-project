@@ -16,7 +16,6 @@ function getState() {
 
 //If state is "False", shows a button to call an API, otherwise it gets the memes stored in the DB
 function compareState(state) {
-    console.log(state)
     if(state === "false") {
         document.querySelector("#get-memes").style.display = "block";
     } else {
@@ -69,8 +68,6 @@ function postMeme(memeObj) {
           },
         body: JSON.stringify(memeObj)
     })
-    .then(res => res.json())
-    .then(meme => console.log(meme))
 }
 
 //Updates the vote count on memes in the DB
@@ -85,8 +82,6 @@ function updateMeme(memeObj) {
               "votes": memeObj.votes
           })
     })
-    .then(res => res.json())
-    .then(meme => console.log(meme))
 }
 
 //Renders memes to the page from the DB
