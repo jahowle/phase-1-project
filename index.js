@@ -8,6 +8,7 @@ sort order of memes based on votes
 const memeArray = []
 
 function getMemes(meme){
+    document.querySelector('#get-memes').style.display = "none";
     fetch(`https://api.imgflip.com/get_memes`, {
         method: 'GET',
     })
@@ -16,7 +17,7 @@ function getMemes(meme){
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    getMemes()
+    document.querySelector('#get-memes').addEventListener('click', getMemes)
 })
 
 function postMeme(memeObj) {
