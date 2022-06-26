@@ -124,21 +124,22 @@ function renderMemesFromDb(memeArray){
 //Renders memes to the page from the API
 function renderMemes(memeArray) {
     for(let i=0; i < 10; i++) {
+        let randIndex = Math.floor(Math.random()*memeArray.length)
         let memeObj = {
-            id: memeArray[i].id,
-            name: memeArray[i].name,
-            url: memeArray[i].url,
+            id: memeArray[randIndex].id,
+            name: memeArray[randIndex].name,
+            url: memeArray[randIndex].url,
             votes: 0
         }
         let memeCard = document.createElement('div')
         memeCard.className = 'memeItem'
         memeCard.innerHTML = `
-            <h2 class="meme-title">${memeArray[i].name}</h2>
-            <img class="memeImage" src=${memeArray[i].url} />
+            <h2 class="meme-title">${memeObj.name}</h2>
+            <img class="memeImage" src=${memeObj.url} />
             <div class="vote-group">
-            <button id="up-${memeArray[i].id}" class="up-btn">Up Vote</button>
+            <button id="up-${memeObj.id}" class="up-btn">Up Vote</button>
             <p><span class="vote-count">${memeObj.votes}</span> votes</p>
-            <button id="down-${memeArray[i].id}" class="down-btn">Down Vote</button>
+            <button id="down-${memeObj.id}" class="down-btn">Down Vote</button>
             </div>
         `
 
@@ -156,7 +157,6 @@ function renderMemes(memeArray) {
             updateMeme(memeObj)
             }
         })
-
         postMeme(memeObj)
         }
     }
