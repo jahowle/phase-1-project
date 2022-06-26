@@ -1,15 +1,11 @@
-/*
-Add a load memes button
-Have it randomly select ten memes
-add upvote and down vote arrows
-sort order of memes based on votes
-*/
 
+//Check to see if the app has already been initiated before
 document.addEventListener("DOMContentLoaded", () => {
     getState()
     document.querySelector('#get-memes').addEventListener('click', getMemes)
 })
 
+//Calls DB to get the State value
 function getState() {
     fetch('http://localhost:3000/dbState', {
         method: 'GET'
@@ -18,6 +14,7 @@ function getState() {
     .then(data => compareState(data.state))
 }
 
+//If state is "False", shows a button to call an API, otherwise it gets the memes stored in the DB
 function compareState(state) {
     console.log(state)
     if(state === "false") {
@@ -27,7 +24,7 @@ function compareState(state) {
     }
 }
 
-
+//Gets an array of Memes from the API and triggers the DB state update
 function getMemes() {
     let dbState = {
         "state": "true"
@@ -42,6 +39,7 @@ function getMemes() {
     updateState(dbState)
 }
 
+//Updates the DB state from "false" to "true"
 function updateState(state) {
     fetch('http://localhost:3000/dbstate', {
         method: 'PATCH',
@@ -52,7 +50,7 @@ function updateState(state) {
     })
     }
 
-
+//Gets memes stored in the DB
 function getMemesFromDb() {
     fetch('http://localhost:3000/memes', {
         method: 'GET'
@@ -61,6 +59,7 @@ function getMemesFromDb() {
     .then(data => renderMemesFromDb(data))
 }
 
+//Adds memes to the DB
 function postMeme(memeObj) {
     fetch('http://localhost:3000/memes', {
         method: 'POST',
@@ -74,6 +73,7 @@ function postMeme(memeObj) {
     .then(meme => console.log(meme))
 }
 
+//Updates the vote count on memes in the DB
 function updateMeme(memeObj) {
     fetch(`http://localhost:3000/memes/${memeObj.id}`, {
         method: 'PATCH',
@@ -89,7 +89,7 @@ function updateMeme(memeObj) {
     .then(meme => console.log(meme))
 }
 
-
+//Renders memes to the page from the DB
 function renderMemesFromDb(memeArray){
     memeArray.forEach(function(item) {
         let memeCard = document.createElement('div')
@@ -121,7 +121,7 @@ function renderMemesFromDb(memeArray){
     }
     )}
 
-
+//Renders memes to the page from the API
 function renderMemes(memeArray) {
     for(let i=0; i < 10; i++) {
         let memeObj = {
