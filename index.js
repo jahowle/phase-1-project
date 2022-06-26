@@ -118,9 +118,11 @@ function renderMemesFromDb(memeArray){
         })
 
         memeCard.querySelector('.down-btn').addEventListener('click', () => {
-            memeObj.votes--
-            memeCard.querySelector('span').textContent = memeObj.votes
-            updateMeme(memeObj)
+            if (memeObj.votes > 0) {
+                memeObj.votes--
+                memeCard.querySelector('span').textContent = memeObj.votes
+                updateMeme(memeObj)
+                }
         })
     }
 }
@@ -154,9 +156,11 @@ function renderMemes(memeArray) {
         })
 
         memeCard.querySelector('.down-btn').addEventListener('click', () => {
+            if (memeObj.votes > 0) {
             memeObj.votes--
             memeCard.querySelector('span').textContent = memeObj.votes
             updateMeme(memeObj)
+            }
         })
 
         postMeme(memeObj)
