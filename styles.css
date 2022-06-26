@@ -36,3 +36,9 @@ body {
 .meme-title {
     text-align: center;
 }
+
+#get-memes {
+    display: none;
+    border-color: blue;
+    border-width: 5px;
+}

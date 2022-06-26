@@ -5,20 +5,61 @@ add upvote and down vote arrows
 sort order of memes based on votes
 */
 
-const memeArray = []
+document.addEventListener("DOMContentLoaded", () => {
+    getState()
+    document.querySelector('#get-memes').addEventListener('click', getMemes)
+})
 
-function getMemes(meme){
+function getState() {
+    fetch('http://localhost:3000/dbState', {
+        method: 'GET'
+    })
+    .then(res => res.json())
+    .then(data => compareState(data.state))
+}
+
+function compareState(state) {
+    console.log(state)
+    if(state === "false") {
+        document.querySelector("#get-memes").style.display = "block";
+    } else {
+        getMemesFromDb()
+    }
+}
+
+
+function getMemes() {
+    let dbState = {
+        "state": "true"
+    }
     document.querySelector('#get-memes').style.display = "none";
     fetch(`https://api.imgflip.com/get_memes`, {
         method: 'GET',
     })
     .then(res => res.json())
-    .then(data => renderMemes(data))
+    .then(obj => renderMemes(obj.data.memes))
+
+    updateState(dbState)
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector('#get-memes').addEventListener('click', getMemes)
-})
+function updateState(state) {
+    fetch('http://localhost:3000/dbstate', {
+        method: 'PATCH',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(state)
+    })
+    }
+
+
+function getMemesFromDb() {
+    fetch('http://localhost:3000/memes', {
+        method: 'GET'
+    })
+    .then(res => res.json())
+    .then(data => renderMemesFromDb(data))
+}
 
 function postMeme(memeObj) {
     fetch('http://localhost:3000/memes', {
@@ -48,21 +89,24 @@ function updateMeme(memeObj) {
     .then(meme => console.log(meme))
 }
 
-function renderMemes(images) {
+
+function renderMemesFromDb(memeArray){
     for(let i=0; i < 10; i++) {
         let memeObj = {
-            id: images.data.memes[i].id,
-            votes: 0
+            id: memeArray[i].id,
+            name: memeArray[i].name,
+            url: memeArray[i].url,
+            votes: memeArray[i].votes
         }
         let memeCard = document.createElement('div')
         memeCard.className = 'memeItem'
         memeCard.innerHTML = `
-            <h2 class="meme-title">${images.data.memes[i].name}</h2>
-            <img class="memeImage" src=${images.data.memes[i].url} />
+            <h2 class="meme-title">${memeArray[i].name}</h2>
+            <img class="memeImage" src=${memeArray[i].url} />
             <div class="vote-group">
-            <button id="up-${images.data.memes[i].id}" class="up-btn">Up Vote</button>
+            <button id="up-${memeArray[i].id}" class="up-btn">Up Vote</button>
             <p><span class="vote-count">${memeObj.votes}</span> votes</p>
-            <button id="down-${images.data.memes[i].id}" class="down-btn">Down Vote</button>
+            <button id="down-${memeArray[i].id}" class="down-btn">Down Vote</button>
             </div>
         `
 
@@ -78,7 +122,42 @@ function renderMemes(images) {
             memeCard.querySelector('span').textContent = memeObj.votes
             updateMeme(memeObj)
         })
+    }
+}
 
+
+function renderMemes(memeArray) {
+    for(let i=0; i < 10; i++) {
+        let memeObj = {
+            id: memeArray[i].id,
+            name: memeArray[i].name,
+            url: memeArray[i].url,
+            votes: 0
+        }
+        let memeCard = document.createElement('div')
+        memeCard.className = 'memeItem'
+        memeCard.innerHTML = `
+            <h2 class="meme-title">${memeArray[i].name}</h2>
+            <img class="memeImage" src=${memeArray[i].url} />
+            <div class="vote-group">
+            <button id="up-${memeArray[i].id}" class="up-btn">Up Vote</button>
+            <p><span class="vote-count">${memeObj.votes}</span> votes</p>
+            <button id="down-${memeArray[i].id}" class="down-btn">Down Vote</button>
+            </div>
+        `
+
+        document.querySelector('#meme-container').appendChild(memeCard)
+        memeCard.querySelector('.up-btn').addEventListener('click', () => {
+            memeObj.votes++
+            memeCard.querySelector('span').textContent = memeObj.votes
+            updateMeme(memeObj)
+        })
+
+        memeCard.querySelector('.down-btn').addEventListener('click', () => {
+            memeObj.votes--
+            memeCard.querySelector('span').textContent = memeObj.votes
+            updateMeme(memeObj)
+        })
 
         postMeme(memeObj)
         }
