@@ -91,41 +91,35 @@ function updateMeme(memeObj) {
 
 
 function renderMemesFromDb(memeArray){
-    for(let i=0; i < 10; i++) {
-        let memeObj = {
-            id: memeArray[i].id,
-            name: memeArray[i].name,
-            url: memeArray[i].url,
-            votes: memeArray[i].votes
-        }
+    memeArray.forEach(function(item) {
         let memeCard = document.createElement('div')
         memeCard.className = 'memeItem'
         memeCard.innerHTML = `
-            <h2 class="meme-title">${memeArray[i].name}</h2>
-            <img class="memeImage" src=${memeArray[i].url} />
+            <h2 class="meme-title">${item.name}</h2>
+            <img class="memeImage" src=${item.url} />
             <div class="vote-group">
-            <button id="up-${memeArray[i].id}" class="up-btn">Up Vote</button>
-            <p><span class="vote-count">${memeObj.votes}</span> votes</p>
-            <button id="down-${memeArray[i].id}" class="down-btn">Down Vote</button>
+            <button id="up-${item.id}" class="up-btn">Up Vote</button>
+            <p><span class="vote-count">${item.votes}</span> votes</p>
+            <button id="down-${item.id}" class="down-btn">Down Vote</button>
             </div>
         `
 
         document.querySelector('#meme-container').appendChild(memeCard)
         memeCard.querySelector('.up-btn').addEventListener('click', () => {
-            memeObj.votes++
-            memeCard.querySelector('span').textContent = memeObj.votes
-            updateMeme(memeObj)
+            item.votes++
+            memeCard.querySelector('span').textContent = item.votes
+            updateMeme(item)
         })
 
         memeCard.querySelector('.down-btn').addEventListener('click', () => {
-            if (memeObj.votes > 0) {
-                memeObj.votes--
-                memeCard.querySelector('span').textContent = memeObj.votes
-                updateMeme(memeObj)
+            if (item.votes > 0) {
+                item.votes--
+                memeCard.querySelector('span').textContent = item.votes
+                updateMeme(item)
                 }
         })
     }
-}
+    )}
 
 
 function renderMemes(memeArray) {
