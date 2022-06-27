@@ -96,6 +96,7 @@ body {
 
 .meme-title {
   text-align: center;
+  text-decoration: underline;
 }
 
 #get-memes {
