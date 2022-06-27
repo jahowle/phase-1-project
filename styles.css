@@ -1,148 +1,158 @@
 body {
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	height: 100%;
-    font-family: "Poppins", sans-serif;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-
 .up-btn {
-    width: 130px;
-    height: 40px;
-    color: black;
-    border-radius: 5px;
-    padding: 10px 25px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-    background: #fff;
-    
+  width: 130px;
+  height: 40px;
+  color: black;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  background: #fff;
 }
 
 .down-btn {
-    width: 130px;
-    height: 40px;
-    color: black;
-    border-radius: 5px;
-    padding: 10px 25px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-    background: #fff;
-    
+  width: 130px;
+  height: 40px;
+  color: black;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  background: #fff;
 }
 
 .custom-btn {
-    width: 130px;
-    height: 40px;
-    color: #fff;
-    border-radius: 5px;
-    padding: 10px 25px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-        box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-        7px 7px 20px 0px rgba(0,0,0,.1),
-        4px 4px 5px 0px rgba(0,0,0,.1);
-    outline: none;
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
 }
 
-
 .memeImage {
-    max-width: 400px;
-    border-radius: 10px;
-    overflow: hidden;
-    filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.2));
+  max-width: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.2));
 }
 
 .memeItem {
-    margin-bottom: 25px;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
+  margin-bottom: 25px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
 .vote-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #headline {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #meme-container {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    width: 50%;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 50%;
+  align-items: center;
 }
 
 .meme-title {
-    text-align: center;
+  text-align: center;
 }
 
 #get-memes {
-    display: none;
-    border-color: blue;
-    border-width: 5px;
+  display: none;
+  border-color: blue;
+  border-width: 5px;
 }
 
 .btn-11 {
-    border: none;
-    background: rgb(251,33,117);
-      background: linear-gradient(0deg, rgba(251,33,117,1) 0%, rgba(234,76,137,1) 100%);
-      color: #fff;
-      overflow: hidden;
+  border: none;
+  background: rgb(251, 33, 117);
+  background: linear-gradient(
+    0deg,
+    rgba(251, 33, 117, 1) 0%,
+    rgba(234, 76, 137, 1) 100%
+  );
+  color: #fff;
+  overflow: hidden;
+}
+.btn-11:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.btn-11:before {
+  position: absolute;
+  content: "";
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  animation: shiny-btn1 3s ease-in-out infinite;
+}
+.btn-11:hover {
+  opacity: 0.7;
+}
+.btn-11:active {
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+@-webkit-keyframes shiny-btn1 {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
   }
-  .btn-11:hover {
-      text-decoration: none;
-      color: #fff;
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
   }
-  .btn-11:before {
-      position: absolute;
-      content: '';
-      display: inline-block;
-      top: -180px;
-      left: 0;
-      width: 30px;
-      height: 100%;
-      background-color: #fff;
-      animation: shiny-btn1 3s ease-in-out infinite;
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
   }
-  .btn-11:hover{
-    opacity: .7;
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
   }
-  .btn-11:active{
-    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
-                -4px -4px 6px 0 rgba(116, 125, 136, .2), 
-      inset -4px -4px 6px 0 rgba(255,255,255,.2),
-      inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
-  }
-  
-  
-  @-webkit-keyframes shiny-btn1 {
-      0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
-      80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
-      81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
-      100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
-  }
+}
