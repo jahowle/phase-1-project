@@ -65,6 +65,8 @@ body {
 
 .memeImage {
     max-width: 400px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .memeItem {
